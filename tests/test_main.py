@@ -6,11 +6,11 @@ import sys
 import unittest
 import pytest
 
-from src.main import is_perfect, perfect_nums_in_range
-
 
 #### APPENDING PATH ####
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
+from src.main import is_perfect, perfect_nums_in_range
 
 class TestPerfectNum(unittest.TestCase):
     """
@@ -55,9 +55,9 @@ def test_is_perfect():
 
 
 def test_is_perfect_str_fail():
-    '''
+    """
     Invalidating the string args
-    '''
+    """
     with pytest.raises(TypeError):
         is_perfect("1")
     with pytest.raises(TypeError):
@@ -65,9 +65,9 @@ def test_is_perfect_str_fail():
 
 
 def test_perfect_nums_in_range():
-    '''
+    """
     Tests for the  perfect_nums_in_range function
-    '''
+    """
     assert perfect_nums_in_range(1) == []
     assert perfect_nums_in_range(5) == []
     assert perfect_nums_in_range(10) == [6]
@@ -95,9 +95,9 @@ def test_perfect_nums_in_range():
 
 
 def test_perfect_nums_in_range_str_fail():
-    '''
+    """
     Invalidating string args here too
-    '''
+    """
     with pytest.raises(TypeError):
         perfect_nums_in_range("1")
     with pytest.raises(TypeError):

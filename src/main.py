@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+
 ## EDIT : I just removed an unnecessary import
 def is_perfect(n: int) -> bool:
     """
