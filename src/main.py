@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-import math
-
-
+## EDIT : I just removed an unnecessary import
 def is_perfect(n: int) -> bool:
     """
     Returns true if n is a perfect number
