@@ -27,10 +27,13 @@ def test_isPerfect():
     assert isPerfect(-6) == False
     assert isPerfect(-28) == False
     # test float numbers
-    assert isPerfect(1.1) == False
-    assert isPerfect(19.12) == False
+    with pytest.raises(TypeError):
+        isPerfect(1.1)
+    with pytest.raises(TypeError):
+        isPerfect(19.12)
     # test empty arguments
-    assert isPerfect() == False
+    with pytest.raises(TypeError):
+        isPerfect()
 
 
 def test_addition_str_fail():
