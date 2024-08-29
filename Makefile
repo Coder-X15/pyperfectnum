@@ -1,21 +1,20 @@
 # TODO: Create Makefile for python project
 
 PROJECT_NAME := pyperfectnum
-PYTHON := python3
-VENV_DIR := venv
+PYTHON := python
+VENV_DIR := ./venv
 REQUIREMENTS_FILE := requirements.txt
 REQUIREMENTS_DEV_FILE := requirements_dev.txt
 
 .PHONY: git-init git-config-user git-config-alias venv install-deps install-dev-deps lint format test clean exit
 
 git-init:
-	# atif [ ! git rev-parse --git-dir > /dev/null 2>&1 ]; then
-	@if [ ! -d .git ]; then \
-		git init; \
-		curl -o .gitignore https://raw.githubusercontent.com/github/gitignore/master/Python.gitignore; \
-	else \
+	if not exist .git (
+		git init
+		curl -o .gitignore https://raw.githubusercontent.com/github/gitignore/master/Python.gitignore
+	) else (
 		echo "Already a git repository"; \
-	fi
+	)
 
 git-config-user:
 	git config user.name "Coder-X15"
@@ -36,41 +35,41 @@ git-config-alias:
 
 
 venv:
-    # $(VENV_DIR)/bin/activate
-    # $(VENV_DIR)/bin/activate: $(REQUIREMENTS_FILE)
-	@if [ ! -d $(VENV_DIR) ]; then \
-		$(PYTHON) -m venv $(VENV_DIR); \
-		$(VENV_DIR)/bin/pip install --upgrade pip setuptools wheel; \
-	fi
+    # $(VENV_DIR)/Scripts/activate
+    # $(VENV_DIR)/Scripts/activate: $(REQUIREMENTS_FILE)
+	if  not exist $(VENV_DIR) (
+		$(PYTHON) -m venv $(VENV_DIR)
+		$(VENV_DIR)/Scripts/python -m pip install --upgrade pip setuptools wheel
+	)
 
 install-deps: venv
-    # $(VENV_DIR)/bin/activate
-	@if [ -f $(REQUIREMENTS_FILE) ]; then \
-		$(VENV_DIR)/bin/pip install -r $(REQUIREMENTS_FILE); \
-	fi
+    # $(VENV_DIR)/Scripts/activate
+	if exist $(REQUIREMENTS_FILE) (
+		$(VENV_DIR)/Scripts/python -m pip install -r $(REQUIREMENTS_FILE)
+	)
 
 install-dev-deps: venv
-    # $(VENV_DIR)/bin/activate
-	@if [ -f $(REQUIREMENTS_DEV_FILE) ]; then \
-		$(VENV_DIR)/bin/pip install -r $(REQUIREMENTS_DEV_FILE); \
-	fi
+    # $(VENV_DIR)/Scripts/activate
+	if exist $(REQUIREMENTS_DEV_FILE) (
+		$(VENV_DIR)/Scripts/python -m pip install -r $(REQUIREMENTS_DEV_FILE); \
+	)
 
-lint: $(VENV_DIR)/bin/activate
-	$(VENV_DIR)/bin/pylint **/*.py
+lint: $(VENV_DIR)/Scripts/activate
+	$(VENV_DIR)/Scripts/python -m pylint **/*.py
 
 format:
-    # $(VENV_DIR)/bin/activate
-	$(VENV_DIR)/bin/black **/*.py
+    # $(VENV_DIR)/Scripts/activate
+	$(VENV_DIR)/Scripts/python -m black **/*.py
 
-test: $(VENV_DIR)/bin/activate
-	$(VENV_DIR)/bin/pytest -v
+test: $(VENV_DIR)/Scripts/activate
+	$(VENV_DIR)/Scripts/python -m pytest -v
 
 clean:
-	rm -rf **/__pycache__
-	rm -rf **/*.pyc
+	rmdir /s /q __pycache__
+	del /s /q *.pyc
 
 exit: clean
-	rm -rf $(VENV_DIR)
+	rmdir /s /q $(VENV_DIR)
 
 .PHONY: init
 init: git-init git-config-user git-config-alias venv install-deps install-dev-deps
