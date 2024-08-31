@@ -7,7 +7,7 @@ def is_perfect(n: int) -> bool:
     Args:
         n : a positive integer
     Returns:
-        Returns True if n is a perfect number (i.e., a number that is equal to the sum of its proper divisors) else False
+        bool: `True` if n is a perfect number (i.e., a number that is equal to the sum of its proper divisors) else `False`
         (NB: The same returns False even when n is less than or equal to 0)
     Raises:
         TypeError: if  n is not an integer
@@ -39,7 +39,7 @@ def perfect_nums_in_range(n: int) -> list:
     Args:
         n : a positive integer
     Returns:
-        Returns a list of perfect numbers in the list [i for i in range(1, n+1)]
+        list: A list of perfect numbers in the list [i for i in range(1, n+1)]
     Raises:
         TypeError: if  n is not an integer
         ValueError: if n is not a positive integer
