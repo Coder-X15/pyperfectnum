@@ -12,6 +12,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from src.main import is_perfect, perfect_nums_in_range
 
+
 class TestPerfectNum(unittest.TestCase):
     """
     Class for running tests
